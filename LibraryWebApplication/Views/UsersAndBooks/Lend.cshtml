@@ -1,0 +1,79 @@
+﻿@using LibraryWebApplication.Models
+@model UsersAndBooksModel
+
+@{
+    ViewBag.Title = "UsersAndBooks";
+}
+
+<h2>Lend</h2>
+@using (Html.BeginForm("Lend", "UsersAndBooks", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <dt>
+        @Html.DisplayNameFor(model => model.BooksViewModel)
+    </dt>
+    <dd>
+        <table class="table">
+            <tr>
+                <th>Select</th>
+                <th>Title</th>
+                <th>ISBN</th>
+            </tr>
+            @foreach (var item in Model.BooksViewModel)
+            {
+                <tr>
+                    <td>
+                        <input type="radio" name="selectedBook" value="True" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ISBN)
+                    </td>
+                </tr>
+            }
+        </table>
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.LibraryUsersViewModel)
+    </dt>
+    <dd>
+        <table class="table">
+            <tr>
+                <th>Select</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>OIB</th>
+            </tr>
+            @foreach (var item in Model.LibraryUsersViewModel)
+            {
+                <tr>
+                    <td>
+                        <input type="radio" name="selectedUser" value="True" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OIB)
+                    </td>
+                </tr>
+            }
+        </table>
+    </dd>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Lend" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

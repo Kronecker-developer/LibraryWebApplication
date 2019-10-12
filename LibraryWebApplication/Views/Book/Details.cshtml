@@ -1,0 +1,107 @@
+﻿@model LibraryWebApplication.Books
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Books</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ISBN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ISBN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Availability)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Availability)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorsBooks)
+        </dt>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                </tr>
+                @foreach (var item in Model.AuthorsBooks)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Authors.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Authors.LastName)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BooksPublishers)
+        </dt>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>Mark</th>
+                </tr>
+                @foreach (var item in Model.BooksPublishers)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Publishers.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Publishers.Mark)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BooksCategories)
+        </dt>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+                @foreach (var item in Model.BooksCategories)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Categories.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Categories.Description)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BookID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
